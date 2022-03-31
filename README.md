@@ -1,1 +1,1 @@
-# Wordpress Theme (HTML To Wordpress Conversion).
+# Wordpress Theme (HTML Layout To Wordpress Theme Conversion).

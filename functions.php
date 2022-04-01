@@ -15,6 +15,7 @@ function htmlTowordpress_theme_setup() {
     add_theme_support('post-thumbnails');
 
     add_image_size('home-featured', 640, 400, array('center', 'center'));
+    add_image_size('single-post', 580, 272, array('center', 'center'));
 
     add_theme_support('automatic-feed-links');
     
@@ -36,6 +37,77 @@ function htmlTowordpress_scripts() {
     wp_enqueue_script('htmlTowordpress-main', get_template_directory_uri() . '/assets/js/main.js');
 }
 add_action('wp_enqueue_scripts', 'htmlTowordpress_scripts');
+
+/************** Function using for adding sidebar widgets **************/
+function htmlTowordpress_widgets_init() {
+    register_sidebar( array(
+        'name'                 =>  __( 'Primary Sidebar', 'htmlTowordpress' ),
+        'id'                      =>  'main-sidebar',
+        'description'        =>  'Main Sidebar on Right Side',
+        'before_widget'  =>  '<section id="%1$s" class="box %2$s">',
+        'after_widget'    =>  '</section>',
+        'before_title'     =>  '<header><h3 class="widget-title">',
+        'after_title'       =>  '</h3></header>',
+    ) );
+ 
+    register_sidebar( array(
+        'name'                =>  __( 'Home Banner', 'htmlTowordpress' ),
+        'id'                     =>  'home-banner',
+        'description'        =>  'Banner Area on Homepage',
+        'before_widget' =>  '<section id="%1$s" class="widget %2$s">',
+        'after_widget'   =>  '</section>',
+        'before_title'    =>  '<h3 class="widget-title">',
+        'after_title'      =>  '</h3>',
+    ) );
+ 
+    register_sidebar( array(
+        'name'                =>  __( 'Home Services', 'htmlTowordpress' ),
+        'id'                     =>  'home-services',
+        'description'        =>  'Services Area on Homepage',
+        'before_widget' =>  '<section id="%1$s" class="widget %2$s">',
+        'after_widget'   =>  '</section>',
+        'before_title'    =>  '<h3 class="widget-title">',
+        'after_title'      =>  '</h3>',
+    ) );
+ 
+    register_sidebar( array(
+        'name'                =>  __( 'Footer Widget 1', 'htmlTowordpress' ),
+        'id'                     =>  'footer-1',
+        'before_widget' =>  '<section id="%1$s" class="widget %2$s">',
+        'after_widget'   =>  '</section>',
+        'before_title'    =>  '<header><h2 class="widget-title">',
+        'after_title'      =>  '</h2></header>',
+    ) );
+ 
+    register_sidebar( array(
+        'name'                =>  __( 'Footer Widget 2', 'htmlTowordpress' ),
+        'id'                     =>  'footer-2',
+        'before_widget' =>  '<section id="%1$s" class="widget %2$s">',
+        'after_widget'   =>  '</section>',
+        'before_title'    =>  '<header><h2 class="widget-title">',
+        'after_title'      =>  '</h2></header>',
+    ) );
+ 
+    register_sidebar( array(
+        'name'                =>  __( 'Footer Widget 3', 'htmlTowordpress' ),
+        'id'                     =>  'footer-3',
+        'before_widget' =>  '<section id="%1$s" class="widget %2$s">',
+        'after_widget'   =>  '</section>',
+        'before_title'    =>  '<header><h2 class="widget-title">',
+        'after_title'      =>  '</h2></header>',
+    ) );
+}
+add_action('widgets_init', 'htmlTowordpress_widgets_init');
+
+// Custom Post Type
+require get_template_directory() . '/inc/portfolio.php';
+
+// TGM Plugin Activation
+require_once get_template_directory() . '/inc/class-tgm-plugin-activation.php';
+require get_template_directory() . '/inc/install-plugins.php';
+
+// Kirki Embedded
+require get_template_directory() . '/inc/kirki-config.php';
 
 
 ?>
